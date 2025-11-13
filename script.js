@@ -1,66 +1,43 @@
-const cookie = document.getElementById("cookie");
-const cookieCount = document.getElementById("cookie-count");
+const THEME_KEY = "preferredTheme";
 
-//Setup
-function setup() {
-    if(localStorage.setItem("currentCookies") !== null){
-        localStorage.setItem("currentCookies", "0");
-    }
-    
-    if(localStorage.setItem("totalClick") !== null){
-        localStorage.setItem("totalClicks", "0");
-    }
-    if(localStorage.setItem("cookiesPerClick") !== null){
-        localStorage.setItem("cookiesPerClick", "1");
-    }
-    if(localStorage.setItem("cookiesPerSecond") !== null){
-        localStorage.setItem("cookiesPerSecond", "0");
-    }
-  
+const themeSelect = document.getElementById("theme-select");
+
+// Apply a theme class to <body>
+function applyTheme(themeName) {
+  document.body.classList.remove("theme-light", "theme-dark", "theme-pastel");
+
+  switch (themeName) {
+    case "dark":
+      document.body.classList.add("theme-dark");
+      break;
+    case "pastel":
+      document.body.classList.add("theme-pastel");
+      break;
+    case "light":
+    default:
+      document.body.classList.add("theme-light");
+      break;
+  }
 }
 
-//Update cookies HTML value
-function updateCookiesValues(value){
-    cookieCount.innerHTML = value;
+// Load saved theme when the page loads
+function initTheme() {
+  const savedTheme = localStorage.getItem(THEME_KEY) || "light";
+  applyTheme(savedTheme);
+
+  if (themeSelect) {
+    themeSelect.value = savedTheme;
+  }
 }
 
-//When cookie is clicked, add x amount of cookies to new cookie total.
-function clickCookie(cookiesPerClick){
-    let cookiesToBeAdded = parseInt(cookiePerClick);
-    let cookiesOldTotal = parseInt(localStorage.getItem("currentCookie"));
-
-    let cookiesNewTotal = cookiesToBeAdded + cookiesOldTotal;
-    localStorage.setItem("currentCookies", cookiesNewTotal);
-
-    updateCookiesValues(localStorage.getItem("currentCookies"));
+// Save the new theme when user changes it
+if (themeSelect) {
+  themeSelect.addEventListener("change", () => {
+    const selectedTheme = themeSelect.value;
+    localStorage.setItem(THEME_KEY, selectedTheme);
+    applyTheme(selectedTheme);
+  });
 }
 
-function checkForUpgradeEligibility(){
-    let cookies = localStorage.getItem("currentCookies");
-    if(cookies >= 10){
-        localStorage.setItem("upgrade1", "true");
-    }
-    if(cookies >= 20){
-        localStorage.setItem("upgrade2", "true");
-    }
-    if(cookies >= 30){
-        localStorage.setItem("upgrade3", "true");
-    }
-    if(cookies >= 40){
-        localStorage.setItem("upgrade4", "true");
-    }
-}
-
-function showUpgradeButtong(){
-    for(let i = 0; 1< 5; i++){
-        if(localStorage.getItem(`upgrade${i}`) == "true"){
-            document.getElementById(`upgrade${i}`).style.display = ""
-        }
-    }
-}
-//Each time cookie is clicked, call clickCookie() function
-cookieStore.addEventListener("click", () => {
-    let cookiesPerClick = localStorage.getItem("cookiesPerClick");
-    clickCookie(cookiesPerClick)
-})
-setup();
+// Initialize on first load
+initTheme();
