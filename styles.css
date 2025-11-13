@@ -77,30 +77,32 @@ body {
   transform: scale(0.95);
 }
 
-/* Upgrades Sidebar */
-.upgrades {
-  flex: 1;
-  padding: 2rem;
-  background: #f7f9fc;
-  border-left: 1px solid #e0e0e0;
-  display: flex;
-  flex-direction: column;
-}
 
-.upgrades h2 {
+
+.Choices h2 {
   margin-bottom: 1rem;
   font-size: 1.4rem;
   color: #555;
 }
 
 /* Upgrade Windows */
-.upgrade-list {
+.choice-list {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
-.upgrade {
+.choice1 {
+  background: red;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+
+.choice2 {
   background: white;
   padding: 1rem;
   border-radius: 10px;
@@ -110,12 +112,22 @@ body {
   display: none; /* Hidden by default */
 }
 
-.upgrade:hover {
+
+.choice3 {
+  background: white;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: all 0.2s ease;
+  cursor: pointer;
+  display: none; /* Hidden by default */
+}
+.choice:hover {
   transform: translateY(-3px);
   box-shadow: 0 8px 16px rgba(0,0,0,0.15);
 }
 
 /* Show upgrade example class (for JS use later) */
-.upgrade.show {
+.choice.show {
   display: block;
 }

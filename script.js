@@ -16,19 +16,7 @@ function setup() {
     if(localStorage.setItem("cookiesPerSecond") !== null){
         localStorage.setItem("cookiesPerSecond", "0");
     }
-     if(localStorage.setItem("upgrade1") !== null){
-        localStorage.setItem("upgrade1", "false");
-    }
-    
-    if(localStorage.setItem("upgrade2") !== null){
-        localStorage.setItem("upgrade2", "false");
-    }
-    if(localStorage.setItem("upgrade3") !== null){
-        localStorage.setItem("upgrade3", "false");
-    }
-    if(localStorage.setItem("upgrade4") !== null){
-        localStorage.setItem("upgrade4", "false");
-    }
+  
 }
 
 //Update cookies HTML value
